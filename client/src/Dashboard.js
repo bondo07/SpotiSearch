@@ -2,6 +2,7 @@ import useAuth from './useAuth'
 import { Container, Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import SpotifyWebApi from 'spotify-web-api-node'
+import TrackSearchResult from './TrackSearchResult';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: '60e95acabd45469ea7a6e3fb3b1048a8',
@@ -49,7 +50,10 @@ const Dashboard = ({code}) => {
     return ( 
         <Container className='d-flex flex-column py-2' style={{height: '100vh'}}>
             <Form.Control type='search' placeholder='Search Songs/Artists' value={search} onChange={handleChange}/>
-            <div className='flex-grow-1 my-2' style={{ overflowY: 'auto'}}>Songs</div>
+            <div className='flex-grow-1 my-2' style={{ overflowY: 'auto'}}>
+                {searchResults.map(track => (
+                    <TrackSearchResult track={track} key= {track.uri}/>
+            ))}</div>
             <div>Bottom</div>
         </Container>
      );
