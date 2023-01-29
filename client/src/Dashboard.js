@@ -3,6 +3,9 @@ import { Container, Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import SpotifyWebApi from 'spotify-web-api-node'
 
+const spotifyApi = new SpotifyWebApi({
+    clientId: '60e95acabd45469ea7a6e3fb3b1048a8',
+})
 
 const Dashboard = ({code}) => {
     const [search, setSearch] = useState("")
@@ -12,9 +15,6 @@ const Dashboard = ({code}) => {
 
     const handleChange = (e) => setSearch(e.target.value);
 
-    const spotifyApi = new SpotifyWebApi({
-        clientId: '60e95acabd45469ea7a6e3fb3b1048a8'
-    })
 
     useEffect(() => {
         if(!accessToken) return
