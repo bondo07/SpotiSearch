@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); //I dont think the login is being done properly here
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
