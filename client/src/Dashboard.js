@@ -14,7 +14,10 @@ const Dashboard = ({code}) => {
     const [searchResults, setSearchResults] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
 
-    
+    function chooseTrack(track) {
+        setPlayingTrack(track)
+        setSearch('')
+    }
 
     const accessToken = useAuth(code)
 
@@ -56,9 +59,9 @@ const Dashboard = ({code}) => {
             <Form.Control type='search' placeholder='Search Songs/Artists' value={search} onChange={handleChange}/>
             <div className='flex-grow-1 my-2' style={{ overflowY: 'auto'}}>
                 {searchResults.map(track => (
-                    <TrackSearchResult track={track} key= {track.uri}/>
+                    <TrackSearchResult track={track} key= {track.uri} chooseTrack={chooseTrack}/>
             ))}</div>
-            <div><Player accessToken={accessToken} /></div>
+            <div><Player accessToken={accessToken} trackUri={playingTrack?.uri}/></div>
         </Container>
      );
 }
