@@ -61,17 +61,19 @@ const Dashboard = ({ code }) => {
   }, [search, accessToken]);
 
   useEffect(() => {
-    if(!playingTrack) return
+    if (!playingTrack) return;
 
-    axios.get('http://localhost:3001/lyrics', {
+    axios
+      .get("http://localhost:3001/lyrics", {
         params: {
-            track: playingTrack.title,
-            artist: playingTrack.artist
-        }
-    }).then(res => {
-        setShowLyrics(res.data.lyrics)
-    })
-  }, [playingTrack])
+          track: playingTrack.title,
+          artist: playingTrack.artist,
+        },
+      })
+      .then((res) => {
+        setShowLyrics(res.data.lyrics);
+      });
+  }, [playingTrack]);
 
   return (
     <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
@@ -90,9 +92,9 @@ const Dashboard = ({ code }) => {
           />
         ))}
         {searchResults.length === 0 && (
-            <div className="text-center" style={{ whiteSpace: "pre" }}>
-                {showLyrics}
-            </div>
+          <div className="text-center" style={{ whiteSpace: "pre" }}>
+            {showLyrics}
+          </div>
         )}
       </div>
       <div>
